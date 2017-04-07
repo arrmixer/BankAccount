@@ -2,7 +2,6 @@ package com.AE;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
-import static junit.framework.TestCase.fail;
 
 /**
  * Created by Angel on 4/6/17.
@@ -31,9 +30,17 @@ public class BankAccountTest {
     }
 
     @org.junit.Test
-    public void withdraw() throws Exception {
-        fail("This test has yet to be implemented");
+    public void withdraw_branch() throws Exception {
+        double balance = account.withdraw(600.00, true);
+        assertEquals(400.00, balance, 0);
     }
+
+    @org.junit.Test(expected = IllegalArgumentException.class)
+    public void withdraw_notBranch() throws Exception {
+        double balance = account.withdraw(600.00, false);
+        assertEquals(400.00, balance, 0);
+    }
+
 
     @org.junit.Test
     public void getBalance_deposit() throws Exception {
