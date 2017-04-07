@@ -10,10 +10,17 @@ import static junit.framework.TestCase.fail;
 public class BankAccountTest {
 
     private BankAccount account;
+    private static int count;
+
+    @org.junit.BeforeClass
+    public static void beforeClass(){
+        System.out.println("This executes before any test cases. Count = " + count++);
+    }
 
     @org.junit.Before
     public void setup(){
         account = new BankAccount("Tim", "Buchalka", 1000.00, BankAccount.CHECKING);
+        System.out.println("Running a test...");
 
     }
     @org.junit.Test
@@ -43,6 +50,15 @@ public class BankAccountTest {
     public void isChecking_true(){
         assertTrue("The account is NOT a checking account",account.isChecking());
     }
+@org.junit.AfterClass //executes after all test cases are done
+    public static void afterClass(){
+    System.out.println("This excutes after any test cases. Count = " + count++);
+}
+
+@org.junit.After
+    public void teardown(){
+    System.out.println("Count = " + count++);
+}
 
 
 
